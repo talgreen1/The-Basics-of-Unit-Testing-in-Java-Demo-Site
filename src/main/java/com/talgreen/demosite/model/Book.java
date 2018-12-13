@@ -9,15 +9,17 @@ public class Book {
     private String author;
     private int publishYear;
     private double price;
+    private int stockCount;
 
-
-    public Book(int id, String name, String author, int publishYear, double price) {
+    public Book(int id, String name, String author, int publishYear, double price, int stockCount) {
         this.id = id;
         this.name = name;
         this.author = author;
         this.publishYear = publishYear;
         this.price = price;
+        this.stockCount = stockCount;
     }
+
 
     public int getId() {
         return id;
@@ -42,6 +44,14 @@ public class Book {
     public Book setPrice(double price) {
         this.price = price;
         return this;
+    }
+
+    public int getStockCount() {
+        return stockCount;
+    }
+
+    public void setStockCount(int stockCount) {
+        this.stockCount = stockCount;
     }
 
     @Override
