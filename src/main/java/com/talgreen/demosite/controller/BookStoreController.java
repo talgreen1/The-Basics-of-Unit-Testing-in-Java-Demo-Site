@@ -2,9 +2,7 @@ package com.talgreen.demosite.controller;
 
 import com.talgreen.demosite.model.Book;
 import com.talgreen.demosite.service.BookStoreService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +19,20 @@ public class BookStoreController {
     @GetMapping
     public List<Book> getAll() {
         return bookStoreService.getBooks();
+    }
+
+    @GetMapping("/sort_id")
+    public List<Book> getBooksSortedById(){
+        return bookStoreService.getBooksSortedById();
+    }
+
+    @GetMapping("/sort_name")
+    public List<Book> getBooksSortedByName(){
+        return bookStoreService.getBooksSortedByName();
+    }
+
+    @GetMapping("/filter_author/{author}")
+    public List<Book> getBooks(@PathVariable String author){
+        return bookStoreService.getBooksByAuthor(author);
     }
 }

@@ -16,8 +16,9 @@ public class BookStoreDao {
         books = new ArrayList<>();
         // Add some starter books
         books.add(new Book(1, "The Hobbit", "J. R. R. Tolkien", 1937, 20.99, 3));
-        books.add(new Book(2, "Harry Potter", "J. K. Rowling", 1997, 56.99, 10));
-        books.add(new Book(3, "The Wizard of Oz", "L. Frank Baum", 1900, 87, 10));
+        books.add(new Book(3, "Harry Potter", "J. K. Rowling", 1997, 56.99, 10));
+        books.add(new Book(2, "The Wizard of Oz", "L. Frank Baum", 1900, 87, 10));
+        books.add(new Book(4, "Harry Potter 2", "J. K. Rowling", 1998, 56.99, 1));
     }
 
     public int getBookCount() {
