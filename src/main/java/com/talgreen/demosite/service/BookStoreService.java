@@ -2,11 +2,11 @@ package com.talgreen.demosite.service;
 
 import com.talgreen.demosite.dao.BookStoreDao;
 import com.talgreen.demosite.model.Book;
-import com.talgreen.demosite.model.BookComparators;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BookStoreService {
@@ -53,7 +53,9 @@ public class BookStoreService {
      * @return List of books written by the author parameter. If there are no such books, empty list will be returned.
      */
     public List<Book> getBooksByAuthor(String author) {
-        return dao.getBooksByAuthor(author);
+        List<Book> books = dao.getBooks();
+
+        return books.stream().filter(b -> b.getAuthor().equals(author)).collect(Collectors.toList());
     }
 
     /**
@@ -84,26 +86,22 @@ public class BookStoreService {
 
     public List<Book> getBooksSortedById() {
         List<Book> books = dao.getBooks();
-        Collections.sort(books, BookComparators::idComparator);
-        return books;
+        return books.stream().sorted(Comparator.comparingInt(Book::getId)).collect(Collectors.toList());
     }
 
     public List<Book> getBooksSortedByName() {
         List<Book> books = dao.getBooks();
-        Collections.sort(books, BookComparators::nameComparator);
-        return books;
+        return books.stream().sorted(Comparator.comparing(Book::getName)).collect(Collectors.toList());
     }
 
     public List<Book> getBooksSortedByPrice() {
         List<Book> books = dao.getBooks();
-        Collections.sort(books, BookComparators::priceComparator);
-        return books;
+        return books.stream().sorted(Comparator.comparingDouble(Book::getPrice)).collect(Collectors.toList());
     }
 
     public List<Book> getBooksSortedByYear() {
         List<Book> books = dao.getBooks();
-        Collections.sort(books, BookComparators::yearComparator);
-        return books;
+        return books.stream().sorted(Comparator.comparingInt(Book::getPublishYear)).collect(Collectors.toList());
     }
 
     public List<Book> getBooks() {

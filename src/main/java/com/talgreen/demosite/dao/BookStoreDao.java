@@ -41,10 +41,6 @@ public class BookStoreDao {
         return null;
     }
 
-    public List<Book> getBooksByAuthor(String author) {
-        return this.books.stream().filter(b -> b.getAuthor().equals(author)).collect(Collectors.toList());
-    }
-
     public Book removeBookById(int id) {
         Book res = null;
 
