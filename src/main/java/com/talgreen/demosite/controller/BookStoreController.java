@@ -4,6 +4,7 @@ import com.talgreen.demosite.model.Book;
 import com.talgreen.demosite.service.BookStoreService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController()
@@ -17,22 +18,22 @@ public class BookStoreController {
     }
 
     @GetMapping
-    public List<Book> getAll() {
+    public List<Book> getAll(HttpServletResponse response) {
         return bookStoreService.getBooks();
     }
 
     @GetMapping("/sort_id")
-    public List<Book> getBooksSortedById(){
+    public List<Book> getBooksSortedById(HttpServletResponse response){
         return bookStoreService.getBooksSortedById();
     }
 
     @GetMapping("/sort_name")
-    public List<Book> getBooksSortedByName(){
+    public List<Book> getBooksSortedByName(HttpServletResponse response){
         return bookStoreService.getBooksSortedByName();
     }
 
     @GetMapping("/filter_author/{author}")
-    public List<Book> getBooks(@PathVariable String author){
+    public List<Book> getBooks(@PathVariable String author, HttpServletResponse response){
         return bookStoreService.getBooksByAuthor(author);
     }
 }
